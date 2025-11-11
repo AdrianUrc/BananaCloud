@@ -51,10 +51,10 @@ Banana Cloud is a highly secure, private file server implemented in Rust, engine
    2. CA cert (valid for 10 years): `openssl req -x509 -new -nodes -key ca-key.pem -sha256 -days 3650 -out ca.pem`
    3. Server private key: `openssl genrsa -out server-key.pem 4096`
    4. Server CSR: `openssl req -new -key server-key.pem -out server.csr`
-   5. Sign server's CSR with your CA: `openssl x509 -req -in server.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial \ -out server-cert.pem -days 365 -sha256`
+   5. Sign server's CSR with your CA: `openssl x509 -req -in server.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem -days 365 -sha256`
    6. Client's private key: `openssl genrsa -out client-key.pem 4096`
    7. Client's CSR: `openssl req -new -key client-key.pem -out client.csr`
-   8. Sign client's CSR with your CA: `openssl x509 -req -in client.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial \ -out client-cert.pem -days 365 -sha256`
+   8. Sign client's CSR with your CA: `openssl x509 -req -in client.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out client-cert.pem -days 365 -sha256`
    9. Verify certs: `openssl verify -CAfile ca.pem server-cert.pem` `openssl verify -CAfile ca.pem client-cert.pem`
 5. Move 'ca.pem', 'server-cert.pem' and 'server-key.pem' to the project's home-path and rename cert and key as 'cert.pem' and 'key.pem'.
 6. Compile the project with 'cargo': `cargo check`
